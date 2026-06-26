@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: docker login
-        run: echo "$PASSWORD" | docker login -u "$USERNAME" --password-stiin
+        run: echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
 
       - name: docker build
         run: |
