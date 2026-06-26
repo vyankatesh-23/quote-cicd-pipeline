@@ -1,0 +1,29 @@
+name: docker build image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    env:
+      USERNAME: ${{  secrets.DOCKERHUB_USERNAME  }}
+      PASSWORD: ${{  secrets.DOCKERHUB_DOKEN  }}
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: docker login
+        run: echo "$PASSWORD" | docker login -u "$USERNAME" --password-stiin
+
+      - name: docker build
+        run: |
+          docker build -t $USERNAME/quote-cicd-app:{{ github.sha  }} .
+          docker tag $USERNAME/quote-cicd-app:{{  github.sha  }} $USERNAME/quote-cicd-app:latest
+             
+      - name: docker push
+        run: |
+          docker push $USERNAME/quote-cicd-app:{{  github.sha  }}
+          docker push $USERNAME/quote-cicd-app:latest
