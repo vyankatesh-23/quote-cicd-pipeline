@@ -20,10 +20,10 @@ jobs:
 
       - name: docker build
         run: |
-          docker build -t $USERNAME/quote-cicd-app:{{ github.sha  }} .
-          docker tag $USERNAME/quote-cicd-app:{{  github.sha  }} $USERNAME/quote-cicd-app:latest
+          docker build -t $USERNAME/quote-cicd-app:${{ github.sha  }} .
+          docker tag $USERNAME/quote-cicd-app:${{  github.sha  }} $USERNAME/quote-cicd-app:latest
              
       - name: docker push
         run: |
-          docker push $USERNAME/quote-cicd-app:{{  github.sha  }}
+          docker push $USERNAME/quote-cicd-app:${{  github.sha  }}
           docker push $USERNAME/quote-cicd-app:latest
