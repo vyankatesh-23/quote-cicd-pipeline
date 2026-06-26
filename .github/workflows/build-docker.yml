@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       USERNAME: ${{  secrets.DOCKERHUB_USERNAME  }}
-      PASSWORD: ${{  secrets.DOCKERHUB_DOKEN  }}
+      PASSWORD: ${{  secrets.DOCKERHUB_TOKEN  }}
     steps:
       - name: checkout code
         uses: actions/checkout@v4
